@@ -9,8 +9,9 @@ html(lang="ru-RU")
 			.maincontent
 				block header
 					include ./_includes/_layout/_header.jade
-				block main
-					include ./_includes/_layout/_main.jade
+				main
+					block main
+						include ./_includes/_layout/_main.jade
 				block footer
 					include ./_includes/_layout/_footer.jade
 		block script
