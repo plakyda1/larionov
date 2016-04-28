@@ -1,0 +1,9 @@
+h1{
+	font-size: 2em; 
+	color: $gold;
+}
+@include breakpoint(1024){
+	h1{
+		font-size: .2em; 
+	}
+}
