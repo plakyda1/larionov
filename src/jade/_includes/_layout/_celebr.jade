@@ -1,0 +1,17 @@
+section.celebr
+	.container-full
+		.people__wrap
+			-for (var x=0;x<6;x++)
+				.people__item
+					if x>=3&&x<5
+						.img__wrap.img__wrap_video
+							img.people__item-image(src='img/celebr/celebr.jpg')
+					else
+						.img__wrap
+							img.people__item-image(src='img/celebr/celebr.jpg')
+					.caption
+						.caption__name
+							|Дмитрий  Нагиев
+						.caption__response
+							|«Лучший из тех, с кем мне доводилось работать»
+						

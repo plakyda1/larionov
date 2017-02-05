@@ -1,0 +1,67 @@
+.header{
+	min-height: 100vh;
+	background-image: url(../img/header_bg.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center center;
+}
+.top-line{
+	display: -webkit-box; /* Android 4.3-, Safari без оптимизации */
+    -webkit-box-pack: justify; /* Android 4.3-, Safari без оптимизации */
+    display: -webkit-flex; /* оптимизация для Safari */
+    webkit-justify-content: space-between; /* оптимизация для Safari */
+    display: flex;
+    justify-content: space-between;
+    text-align: justify; /* IE10-, Firefox 12-22 */
+    text-align-last: justify; /* IE10-, Firefox 12-22 */
+    align-items: center;
+    -ms-text-align-last: justify;
+    text-align-last: justify;	
+	&__logo{
+	    display: inline-block;
+	    display: -webkit-box; /* хак для Android 4.3-, должен идти после inline-block */
+	    vertical-align: middle;
+	}
+	&__tel{
+		@include font-size(30px);
+	    display: inline-block;
+	    display: -webkit-box; /* хак для Android 4.3-, должен идти после inline-block */
+	    vertical-align: middle;
+	}
+}
+.header-block{
+	@include vertical-align-abs();
+	margin:auto;
+	left: 0;
+	right: 0;
+	max-width:40%; 	
+	@include font-size(18px);
+    text-align: center;
+    color: #fff;
+    &__title{
+
+    }
+    &__title_small{
+		text-transform: uppercase;
+		margin-bottom: 	2px;
+		margin-bottom: 20px;
+    }
+    &__title_big{
+		@include font-size(54px);
+		margin-bottom: 50px;
+    }
+    &__button{
+
+    }
+}
+.button{
+	@include border-radius(5px) 
+	@include font-size(18px);
+	text-transform: uppercase;
+	max-width: 300px;
+	background-color: $intr_button;
+	padding:  17px 20px;
+	&:hover{
+		background-color: $intr_button_hover;
+	}
+}

@@ -1,0 +1,111 @@
+.people{
+	&__wrap{
+	 		display: inline-block;
+			text-align: justify;
+			-ms-text-align-last: justify;
+		display: -webkit-box; 
+	    -webkit-box-pack: justify; 
+	    display: -webkit-flex; 
+	    webkit-justify-content: space-around; 
+	    display: flex;
+	    justify-content: space-around;
+	    flex-wrap: wrap;	
+			padding-bottom: 50px;
+		&:after{
+			content: '';
+			width: 100%;
+			display: inline-block;
+		}
+	}
+	&__item{
+		display: inline-block;
+		text-align: center;
+		max-width: 400px;
+		.img__wrap{
+			border-left: 1px solid $gray;
+			border-right: 1px solid $gray;
+			max-height: 250px;
+			img{
+				width:100%;
+			}
+		}
+		.img__wrap_video{
+			position: relative;
+			cursor: pointer;
+			&:before{
+				content: "";
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				width: 100%;
+				height: 100%;
+				background-color: $overlay;
+				@include opacity(0.30);
+				-webkit-transition: opacity 0.25s;
+				-moz-transition: opacity 0.25s;
+				-ms-transition: opacity 0.25s;
+				-o-transition: opacity 0.25s;
+				transition: opacity 0.25s;
+			}
+			&:hover:before{
+				@include opacity(0);
+			}
+			&:after{
+				content: "";
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				margin: auto;
+				width: 103px;
+				height: 103px;
+				border: 3px solid $accent;
+				-webkit-border-radius: 50%;
+				-moz-border-radius: 50%;
+				border-radius: 50%;
+				-moz-background-clip: padding;
+				-webkit-background-clip: padding-box;
+				background-clip: padding-box;
+				background-image: url(../img/icons/arrow.png);
+				background-position: 60% center;
+				background-repeat: no-repeat;
+				-webkit-background-size: 55%;
+				background-size: 55%;
+				-webkit-transition: width 0.25s ease-in-out, height 0.25s ease-in-out, background-size 0.25s, -webkit-background-size 0.25s;
+				-moz-transition: width 0.25s ease-in-out, height 0.25s ease-in-out, background-size 0.25s, -webkit-background-size 0.25s;
+				-ms-transition: width 0.25s ease-in-out, height 0.25s ease-in-out, background-size 0.25s, -webkit-background-size 0.25s;
+				-o-transition: width 0.25s ease-in-out, height 0.25s ease-in-out, background-size 0.25s, -webkit-background-size 0.25s;
+				transition: width 0.25s ease-in-out, height 0.25s ease-in-out, background-size 0.25s, -webkit-background-size 0.25s;
+			}
+			&:hover:after{
+				width: 85px;
+				height: 85px;
+				-webkit-background-size: 55%;
+				background-size: 55%;
+			}
+		}
+		.caption{
+			@include font-size(18px);
+			height: 150px;
+			padding: 0 35px;
+			padding-top: 28px;
+			border-left: 1px solid $gray;
+			border-right: 1px solid $gray;
+			color: #000;
+			&__name{
+				text-transform: uppercase;
+				margin-bottom: 16px;
+				white-space: nowrap;
+			    overflow: hidden;
+				text-overflow: ellipsis; 
+			}
+			&__response{	
+			    overflow: hidden;
+				text-overflow: ellipsis; 
+			}
+		}
+	}
+}

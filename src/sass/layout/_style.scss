@@ -3,10 +3,32 @@ h1{
 
 }
 main{
-		color: $gold;
+		color: $font;
 }
 @include breakpoint(1024){
 	h1{
 		font-size: .2em; 
+	}
+}
+
+.container{
+	max-width: 1200px;
+	padding: 0 30px;
+    margin: 0 auto;
+    text-align: center;
+}
+.container-full{
+	width: 100%;
+}
+.container-form{
+	max-width:600px;
+	float: right;
+	margin-right: 85px;
+}
+.section-title{
+	@include font-size(54px);
+	color: $font;
+	&_white{
+		color:#fff;
 	}
 }
