@@ -3,7 +3,10 @@
 	background-image: url(../img/header_bg.jpg);
 	background-repeat: no-repeat;
 	background-size: cover;
-	background-position: center center;
+	background-position: center top;
+	.container {
+		padding-top: 30px;
+	}
 }
 .top-line{
 	display: -webkit-box; /* Android 4.3-, Safari без оптимизации */
@@ -16,7 +19,7 @@
     text-align-last: justify; /* IE10-, Firefox 12-22 */
     align-items: center;
     -ms-text-align-last: justify;
-    text-align-last: justify;	
+    text-align-last: justify;
 	&__logo{
 	    display: inline-block;
 	    display: -webkit-box; /* хак для Android 4.3-, должен идти после inline-block */
@@ -24,6 +27,9 @@
 	}
 	&__tel{
 		@include font-size(30px);
+		color: #fff;
+		font-family: 'ubuntu';
+		font-weight: 700;
 	    display: inline-block;
 	    display: -webkit-box; /* хак для Android 4.3-, должен идти после inline-block */
 	    vertical-align: middle;
@@ -34,10 +40,11 @@
 	margin:auto;
 	left: 0;
 	right: 0;
-	max-width:40%; 	
+	max-width:50%;
 	@include font-size(18px);
     text-align: center;
     color: #fff;
+    font-weight: 700;
     &__title{
 
     }
@@ -55,12 +62,14 @@
     }
 }
 .button{
-	@include border-radius(5px) 
+	@include border-radius(5px)
 	@include font-size(18px);
 	text-transform: uppercase;
 	max-width: 300px;
+	font-weight: 700;
 	background-color: $intr_button;
 	padding:  17px 20px;
+	transition: background-color 0.5s;
 	&:hover{
 		background-color: $intr_button_hover;
 	}

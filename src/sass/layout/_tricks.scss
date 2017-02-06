@@ -1,0 +1,247 @@
+.tricks {
+	background: {
+		color: #f8f7fa;
+		position: center 100%;
+		repeat: no-repeat;
+		image: url('../img/tricks/logo.png');
+	}
+	.container {
+		padding-top: 100px;
+	}
+	.section-title {
+		margin-bottom: 80px;
+	}
+}
+.tricks-wrap {
+	@include clearfix;
+	.left-side {
+		margin-top: 50px;
+		float: left;
+		width: 35%;
+		text-align: right;
+		.tricks-item:before {
+			right: 0;
+		}
+		.tricks-item:nth-of-type(2n) {
+			margin-right: 20%;
+		}
+	}
+	.img-wrap {
+		float: left;
+		width: 30%;
+		text-align: center;
+		img {
+			display: inline-block;
+		}
+	}
+	.right-side {
+		margin-top: 50px;
+		text-align: left;
+		float: right;
+		width: 35%;
+		.tricks-item:before {
+			left: 0;
+		}
+		.tricks-item:nth-of-type(2n) {
+			margin-left: 20%;
+		}
+	}
+}
+.tricks-item {
+	width: 80%;
+	display: inline-block;
+	@include font-size(18px);
+	position: relative;
+	padding-top: 45px;
+	&:before {
+		content: '';
+		display: block;
+		position: absolute;
+		top: 0;
+		background: {
+			repeat: no-repeat;
+			size: contain;
+		}
+	}
+	&.big {
+		@include font-size(30px);
+		font-weight: 700;
+	}
+	&.ocean {
+		margin-bottom: 50px;
+		&:before {
+			background-image: url(../img/icons/wave.svg);
+			width: 29px;
+			height: 24px;
+		}
+	}
+	&.eye {
+		margin-bottom: 40px;
+		&:before {
+			background-image: url(../img/icons/eye.svg);
+			width: 37px;
+			height: 24px;
+		}
+	}
+	&.atmosphere:before {
+		background-image: url(../img/icons/fire.svg);
+		width: 33px;
+		height: 28px;
+	}
+	&.focus {
+		margin-bottom: 50px;
+		&:before {
+			background-image: url(../img/icons/magic.svg);
+			width: 51px;
+			height: 24px;
+		}
+	}
+	&.star {
+		margin-bottom: 40px;
+		&:before {
+			background-image: url(../img/icons/star.svg);
+			width: 26px;
+			height: 25px;
+		}
+	}
+	&.hearts:before {
+		background-image: url(../img/icons/heart.svg);
+		width: 26px;
+		height: 24px;
+	}
+}
+
+
+@media screen and (max-width: 1025px) {
+	.tricks {
+		.section-title {
+			margin-bottom: 55px;
+		}
+		 .container {
+		 	padding-top: 80px;
+		 }
+
+	}
+	.tricks-wrap {
+		.right-side,
+		.left-side {
+			width: 40%;
+		}
+		.img-wrap {
+			width: 20%;
+		}
+	}
+	.tricks-item.big {
+		@include font-size(26px);
+	}
+}
+@media screen and (max-width: 800px) {
+	.tricks {
+		.section-title {
+			margin-bottom: 40px;
+		}
+		 .container {
+		 	padding-top: 55px;
+		 }
+
+	}
+	.tricks-item {
+		margin-bottom: 30px !important;
+		width: 100%;
+	}
+	.tricks-item.big {
+		@include font-size(22px);
+	}
+	.tricks-wrap .tricks-item:nth-of-type(2n) {
+	    width: 80%;
+	}
+	.tricks-wrap .left-side .tricks-item:nth-of-type(2n) {
+	    margin-right: 20%;
+	}
+	.tricks-wrap .right-side .tricks-item:nth-of-type(2n) {
+		margin-left: 20%;
+	}
+}
+@media screen and (max-width: 601px) {
+	.tricks {
+		.section-title {
+			margin-bottom: 25px;
+		}
+		 .container {
+		 	padding-top: 35px;
+		 }
+
+	}
+	.tricks-wrap .img-wrap {
+		width: 30%;
+	}
+	.tricks-wrap .left-side,
+	.tricks-wrap .right-side {
+		margin-top: 0;
+		float: none;
+		width: 70%;
+		float: left;
+	}
+	.tricks-wrap .img-wrap {
+		float: right;
+	}
+	.tricks-item {
+		padding-top: 0;
+		padding-right: 40px;
+		&:before {
+			top: 0;
+			right: 0;
+			left: initial;
+		}
+		&.focus:before {
+			width: 40px;
+		}
+	}
+	.tricks-wrap {
+		text-align: right;
+		width: 100%;
+		margin-right: 0 ;
+		margin-left: 0;
+	}
+	.tricks-wrap .left-side {
+		.tricks-item:nth-of-type(2n) {
+			margin-right: 10%;
+		}
+	}
+	.tricks-wrap .right-side {
+		text-align: right;
+		.tricks-item:before {
+			left: auto;
+		}
+		.tricks-item:nth-of-type(2n) {
+			margin-left: 0;
+			margin-right: 10%;
+		}
+	}
+}
+
+@media screen and (max-width: 481px) {
+	.tricks-wrap .img-wrap {
+		display: none;
+	}
+	.tricks-wrap .right-side,
+	.tricks-wrap .left-side {
+		width: 100%;
+	}
+	.tricks-wrap .right-side {
+		.tricks-item {
+			text-align: left;
+			padding-left: 40px;
+			padding-right: 0;
+			&:before {
+				left: 0;
+				right: initial;
+				padding-right: 0;
+			}
+		}
+	}
+	.tricks-item {
+		margin-bottom: 25px;
+	}
+
+}

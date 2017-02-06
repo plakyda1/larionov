@@ -1,5 +1,5 @@
 h1{
-	font-size: 2em; 
+	font-size: 2em;
 
 }
 main{
@@ -7,18 +7,22 @@ main{
 }
 @include breakpoint(1024){
 	h1{
-		font-size: .2em; 
+		font-size: .2em;
 	}
 }
 
 .container{
 	max-width: 1200px;
+	min-width: 320px;
 	padding: 0 30px;
     margin: 0 auto;
     text-align: center;
 }
 .container-full{
+	min-width: 320px;
 	width: 100%;
+	max-width: 1200px;
+    margin: 0 auto;
 }
 .container-form{
 	max-width:600px;
@@ -28,7 +32,44 @@ main{
 .section-title{
 	@include font-size(54px);
 	color: $font;
+	font-weight: 700;
 	&_white{
 		color:#fff;
+	}
+}
+
+html,body {
+	font-family: 'ubuntu';
+	color: $font;
+	min-width: 320px;
+}
+
+button, input, optgroup, select, textarea {
+	font-family: 'ubuntu';
+}
+
+@media screen and (max-width: 1025px) {
+	.section-title{
+		@include font-size(48px);
+	}
+}
+
+@media screen and (max-width: 769px) {
+	.section-title{
+		@include font-size(44px);
+	}
+	html,body {
+		font-size: 14px;
+	}
+	.container{
+		padding: 0 15px;
+	}
+}
+@media screen and (max-width: 481px) {
+	.section-title{
+		@include font-size(36px);
+	}
+	html,body {
+		font-size: 14px;
 	}
 }

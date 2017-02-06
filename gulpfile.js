@@ -1,16 +1,16 @@
 var gulp = require('gulp'),
     concat = require('gulp-concat'),// Склейка файлов
     browserSync  = require('browser-sync'), // BrowserSync
-    
+
     jade = require('gulp-jade'), // Jade обработчик html
-    
+
     sass = require('gulp-sass'),
     sourcemaps = require('gulp-sourcemaps'),
     cssnano = require('gulp-cssnano'), //Минификация CSS
     autoprefixer = require('gulp-autoprefixer'), // Автопрефиксы CSS
-    
+
     imagemin = require('gulp-imagemin'),// Сжатие JPG, PNG, SVG, GIF
-    
+
     uglify = require('gulp-uglify'), // Минификация JS
 
     plumber = require('gulp-plumber'),
@@ -33,8 +33,8 @@ gulp.task('jade-templates', function() {
 gulp.task('sass-dev', function() {
   return gulp.src('src/sass/**/*.scss')
     .pipe(plumber())
-    // .pipe(sourcemaps.init())
-    
+    .pipe(sourcemaps.init())
+
     .pipe(sass({
       style: 'compressed',
       errLogToConsole: true,
@@ -46,7 +46,7 @@ gulp.task('sass-dev', function() {
       cascade: true
      }))
     .pipe(cssnano())
-    // .pipe(sourcemaps.write())
+    .pipe(sourcemaps.write())
     .pipe(gulp.dest('build/css/'))
     .pipe(browserSync.stream());
 });
@@ -100,7 +100,7 @@ gulp.task('fonts', function(){
 
 // WATCH
 gulp.task('default', ['jade-templates','sass-dev','img','js-vendor','js','favicon','fonts'], function () {
-    
+
     browserSync.init({
       server : './build'
     });
@@ -112,7 +112,7 @@ gulp.task('default', ['jade-templates','sass-dev','img','js-vendor','js','favico
     watch(["./src/sass/**/*.scss",'./src/sass/_*.scss'], function() {
       gulp.start('sass-dev');
     });
-    
+
     watch('./src/js/*.js', function() {
       gulp.start('js');
     });

@@ -1,22 +1,26 @@
 .form{
 	color: #fff;
-	padding: 85px 0 102px 0;
-	background: $font url('../img/form_bg.png');
-    background-position: 10% 100%;
-	background-repeat: no-repeat;
-	@include clearfix();
+	background-color: $font;
+	.container {
+		background-image: url('../img/form_bg.png');
+	    background-position: 10% 100%;
+		background-repeat: no-repeat;
+		padding: 85px 30px 102px;
+		@include clearfix();
+	}
 	&__wrap{
 
 	}
 	&__title{
 		margin-top: 40px;
 		margin-bottom: 15px;
+		@include font-size(18px);
 	}
 	&__introduction{
 
 	}
 	&__phone{
-		@include border-radius(5px) 
+		@include border-radius(5px)
 		@include font-size(18px);
 		padding:  14px 20px;
 		outline: none;
@@ -27,6 +31,43 @@
 		}
 	}
 	&__submit{
-		margin-left: -80px;
+		margin-left: -50px;
+	}
+}
+@media screen and (max-width: 1025px) {
+	.form .container {
+		background-size: 35%;
+		padding: 70px 30px 80px;
+	}
+}
+@media screen and (max-width: 769px) {
+	.form .container {
+	    background-position: -10% 100%;
+	    background-size: 45%;
+		padding: 55px 15px 60px;
+	}
+	.form .container-form {
+		margin: 0 auto;
+		float: none;
+	}
+}
+@media screen and (max-width: 601px) {
+	.form .container {
+	    background-size: 50%;
+	}
+
+	.form {
+		.form__introduction {
+			text-align: center;
+		}
+		.form__phone {
+			display: inline-block;
+			width: 260px;
+		}
+		.button {
+			display: inline-block;
+			margin-left: 0;
+		}
+
 	}
 }

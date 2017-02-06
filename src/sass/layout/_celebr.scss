@@ -3,13 +3,13 @@
 	 		display: inline-block;
 			text-align: justify;
 			-ms-text-align-last: justify;
-		display: -webkit-box; 
-	    -webkit-box-pack: justify; 
-	    display: -webkit-flex; 
-	    webkit-justify-content: space-around; 
+		display: -webkit-box;
+	    -webkit-box-pack: justify;
+	    display: -webkit-flex;
+	    webkit-justify-content: space-around;
 	    display: flex;
 	    justify-content: space-around;
-	    flex-wrap: wrap;	
+	    flex-wrap: wrap;
 			padding-bottom: 50px;
 		&:after{
 			content: '';
@@ -94,17 +94,21 @@
 			padding-top: 28px;
 			border-left: 1px solid $gray;
 			border-right: 1px solid $gray;
-			color: #000;
+			color: #1d1d1e;
 			&__name{
 				text-transform: uppercase;
 				margin-bottom: 16px;
+				font-weight: 700;
 				white-space: nowrap;
 			    overflow: hidden;
-				text-overflow: ellipsis; 
+				text-overflow: ellipsis;
 			}
-			&__response{	
+			&__response{
+				font-family: 'lora';
+				font-style: italic;
+				line-height: 26px;
 			    overflow: hidden;
-				text-overflow: ellipsis; 
+				text-overflow: ellipsis;
 			}
 		}
 	}

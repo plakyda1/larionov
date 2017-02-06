@@ -1,0 +1,146 @@
+.footer {
+	.call-wrap {
+		background-color: #f8f7fa;
+		.container {
+			padding-top: 105px;
+			padding-bottom: 105px;
+			@include clearfix;
+			background-position: 2% 100%;
+			background-image: url(../img/form_bg2.png);
+			background-repeat: no-repeat;
+		}
+		.section-title {
+			margin-bottom: 40px;
+		}
+		.form__text {
+			margin-bottom: 10px;
+			line-height: 26px;
+			color: #1d1d1e;
+			a {
+				margin-left: 0.3em;
+				color: #6200ea;
+				font-weight: 700;
+				text-decoration: underline;
+				&:hover {
+					text-decoration: none;
+				}
+			}
+		}
+		.button  {
+			color: #fff;
+		}
+
+		.form__text ,
+		.form__introduction {
+			text-align: left;
+		}
+	}
+}
+.corp-line {
+	background-color: #1d1d1e;
+	color: #fff;
+	.left-side {
+		float: left;
+	}
+	.top-line__tel {
+		float: right;
+		margin-top: 12px;
+	}
+	.container {
+		@include clearfix;
+		padding-top: 10px;
+		padding-bottom: 10px;
+	}
+}
+.footer-text {
+	display: inline-block;
+	vertical-align: middle;
+	margin-left: 15px;
+	text-align: left;
+	@include font-size(14px);
+	line-height: 21px;
+	.politic {
+		text-decoration: underline;
+		&:hover {
+			text-decoration: none;
+		}
+	}
+}
+.logo-footer {
+	vertical-align: middle;
+	display: inline-block;
+	height: 60px;
+	width: 47px;
+	img {
+		max-width: 100%;
+	}
+}
+@media screen and (max-width: 1025px) {
+	.footer .call-wrap .container {
+		background-size: 45%;
+		padding-top: 85px;
+		padding-bottom: 85px;
+	}
+}
+@media screen and (max-width: 769px) {
+	.corp-line .left-side {
+		display: block;
+		text-align: center;
+		float: none;
+	}
+	.corp-line .top-line__tel {
+		display: block;
+		text-align: center;
+		float: none;
+	}
+	.footer {
+		.call-wrap {
+			.container {
+				padding-top: 60px;
+				padding-bottom: 60px;
+				background-position: 98% 100%;
+				background-size: 55%;
+			}
+		}
+	}
+	.call-wrap {
+		.container-form {
+			margin: 0 auto;
+			float: none;
+		}
+	}
+}
+@media screen and (max-width: 601px) {
+	.call-wrap {
+		.form__phone {
+			width: 260px;
+			box-sizing:border-box;
+		}
+		.form__submit {
+			margin-left: 0;
+			display: block;
+		}
+	}
+}
+@media screen and (max-width: 480px) {
+	.footer {
+		.call-wrap {
+			.container {
+				background-position: 300% 100%;
+				background-size: 80%;
+			}
+		}
+	}
+}
+@media screen and (max-width: 381px) {
+	.footer .call-wrap  {
+		.form__introduction,
+		.form__text {
+			text-align: center;
+		}
+	}
+	.call-wrap .button,
+	.call-wrap .form__phone {
+		display: inline-block;
+	}
+}
