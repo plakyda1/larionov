@@ -9,28 +9,36 @@ var myModule = (function () {
 
 	// Прослушивает события 
 	function _setUpListners () {
-		$('#introduction__submit').on('click', validation);
+		$('#introduction__submit, #introduction__submit_footer').on('click', validation);
 	};
 
 	function maskPhone (e) {
 		$('.form__phone').mask('+7 (999) 99-99-99');
 	};
-
+	var tooltipText = {
+		error: 'Вы не ввели номер телефона',
+		success: 'Мы вам перезвоним'
+	}
 	// Валидация форм
 	function validation(event) {
 		event.preventDefault();
 		var form = $(this).parent('form');
-		var value = form.find(':text').val();
-		console.log(value)
+		var input = form.find(':text');
+		var value = input.val();
+		input.removeClass('has-error success');
+		$('.tooltip').remove();
 		if (value =='' || value == 'undefined') {
-			alert(1)
+			input.addClass('has-error');
+			form.append('<div class="tooltip tooltip-error">'+tooltipText.error+'</div>');
 		}else{
-			sendData(value)
+			sendData(value);
+			input.addClass('success')
+			form.append('<div class="tooltip tooltip-success">'+tooltipText.success+'</div>');
 		}		
 	}
 	// Отправит данные
 	function sendData(value) {
-		$.$.ajax({
+		$.ajax({
 			url: '/path/to/file',
 			type: 'POST',
 			dataType: 'default: Intelligent Guess (Other values: xml, json, script, or html)',

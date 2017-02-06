@@ -17,7 +17,7 @@
 		@include font-size(18px);
 	}
 	&__introduction{
-
+		position: relative;
 	}
 	&__phone{
 		@include border-radius(5px)

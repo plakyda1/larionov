@@ -74,3 +74,58 @@
 		background-color: $intr_button_hover;
 	}
 }
+@media screen and (max-width: 1025px) {
+	.top-line__logo{
+		img{
+			max-width:90%;
+		}
+	}
+	.header-block__title_big{
+		@include font-size(46px);	
+	}
+	.top-line__tel{
+		@include font-size(26px);
+	}
+}
+@media screen and (max-width: 924px) {
+	.top-line__logo{
+		img{
+			max-width:80%;
+		}
+	}
+	.header-block{
+		max-width:70%;
+	}
+	.top-line__tel{
+		@include font-size(24px);
+	}
+}
+@media screen and (max-width: 650px) {
+	.top-line__logo{
+		img{
+			max-width:60%;
+		}
+	}
+	.header-block{
+		max-width:80%;
+	}
+	.top-line__tel{
+		@include font-size(20px);
+	}
+}
+@media screen and (max-width: 500px) {
+	.top-line__logo{
+		img{
+			max-width:40%;
+		}
+	}
+	.header-block{
+		max-width:90%;
+	}
+	.header-block__title_big{
+		@include font-size(36px);	
+	}
+	.top-line__tel{
+		@include font-size(18px);
+	}
+}
