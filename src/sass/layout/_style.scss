@@ -25,7 +25,7 @@ main{
 .tooltip-success{
     position: absolute;
     color: #c62828;
-    width: 81%;
+    width: 486px;
     height: 54px;
     top: 0;
     left: 50%;
@@ -39,14 +39,15 @@ main{
     @include border-radius(5px);
     &:before{
    		content:"";
-   		position: absolute;
+   		// position: absolute;
+   		display: inline-block;
    		width: 21px;
    		height:16px;
    		background-image: url(../img/icons/check_w.svg);
    		background-size: cover;
    		background-repeat: no-repeat;
-   		top: 20px;
-   		margin-left: -30px;
+   		// top: 20px;
+   		margin-right: 15px;
     }
 
 }
@@ -58,13 +59,13 @@ main{
 	}
 }
 @media screen and (max-width: 620px) {
-	.tooltip-success{
-		left:0;
-		width: 100%;
-		margin-left: 0;
-	}
+	// .tooltip-success{
+	// 	left:0;
+	// 	width: 100%;
+	// 	margin-left: 0;
+	// }
 }
-@media screen and (max-width: 569px) {
+@media screen and (max-width: 594px) {
 	.tooltip-success{
 		left:50%;
 		width: 260px;

@@ -7,7 +7,7 @@ var myModule = (function () {
 		maskPhone();
 	};
 
-	// Прослушивает события 
+	// Прослушивает события
 	function _setUpListners () {
 		$('#introduction__submit, #introduction__submit_footer').on('click', validation);
 	};
@@ -31,10 +31,11 @@ var myModule = (function () {
 			input.addClass('has-error');
 			form.append('<div class="tooltip tooltip-error">'+tooltipText.error+'</div>');
 		}else{
-			sendData(value);
+			// sendData(value);
 			input.addClass('success')
 			form.append('<div class="tooltip tooltip-success">'+tooltipText.success+'</div>');
-		}		
+		}
+		return false;
 	}
 	// Отправит данные
 	function sendData(value) {
@@ -53,10 +54,10 @@ var myModule = (function () {
 		.always(function() {
 			console.log("complete");
 		});
-		
+
 	}
 
-	// Возвращаем объект (публичные методы) 
+	// Возвращаем объект (публичные методы)
 	return {
 		init: init
 	};

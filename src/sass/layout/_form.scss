@@ -20,18 +20,23 @@
 		position: relative;
 	}
 	&__phone{
+		height: 54px;
 		@include border-radius(5px)
 		@include font-size(18px);
 		padding:  14px 20px;
 		outline: none;
 		border: 3px solid #fff;
-
+		width: 230px;
+	    vertical-align: top;
 		&:focus{
 			border: 3px solid $accent;
 		}
 	}
 	&__submit{
+	    vertical-align: top;
+		height: 54px;
 		margin-left: -50px;
+		width: 300px;
 	}
 }
 @media screen and (max-width: 1025px) {
@@ -51,7 +56,7 @@
 		float: none;
 	}
 }
-@media screen and (max-width: 601px) {
+@media screen and (max-width: 594px) {
 	.form .container {
 	    background-size: 50%;
 	}

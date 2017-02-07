@@ -83,7 +83,7 @@
 		margin-left: 0;
 		text-align: center;
 		left:0;
-		width: 86%;
+		// width: 86%;
 	}
 }
 @media screen and (max-width: 1025px) {
@@ -97,7 +97,7 @@
 		    left: 0;
 		}
 		.tooltip-success{
-			width: 97%;
+			// width: 97%;
 		}
 	}
 }
@@ -135,7 +135,7 @@
 	}
 }
 @media screen and (max-width: 601px) {
-	.call-wrap {
+		.call-wrap {
 		.form__phone {
 			width: 260px;
 			box-sizing:border-box;
@@ -178,10 +178,11 @@
 	.call-wrap{
 		.tooltip-error {
 		    left: 0;
+		    width: 100%;
 		}
 		.tooltip-success{
-			width: 260px;
-			left:35px;
+		    left: 50%;
+		    margin-left: -130px;
 		}
 	}
 }

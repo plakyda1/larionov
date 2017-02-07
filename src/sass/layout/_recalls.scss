@@ -66,6 +66,7 @@
 	    justify-content: space-between;
 	    flex-wrap: wrap;
 		vertical-align: top;
+		font-size: 0;
 		&:after{
 			content: '';
 			width: 100%;
@@ -75,7 +76,7 @@
 	&__item{
 		display: inline-block;
 		text-align: left;
-		max-width: 30%;
+		max-width: 28.9%;
 		padding: 0 0;
 		margin-bottom: 83px;
 	}
@@ -93,7 +94,7 @@
 		line-height:24px;
 	}
 	&__item_wide{
-		max-width:65%;
+		max-width:64%;
 	}
 }
 @media screen and (max-width: 1025px) {
