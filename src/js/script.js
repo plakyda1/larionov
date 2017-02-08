@@ -66,3 +66,18 @@ var myModule = (function () {
 
 // Вызов модуля
 myModule.init();
+
+$(function(){
+	$('a[href="#meetTo"]').on('click', function(event) {
+		event.preventDefault();
+		/* Act on the event */
+		$("html, body").animate({
+			scrollTop: $($(this).attr('href')).offset().top + "px"
+		}, {
+			duration: 1000,
+			easing: "swing"
+		});
+		$('#footer__phone').focus();
+		return false;
+	});
+})

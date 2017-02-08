@@ -58,7 +58,7 @@
 }
 @media screen and (max-width: 594px) {
 	.form .container {
-	    background-size: 50%;
+	    background-size: 60%;
 	}
 
 	.form {
@@ -68,11 +68,19 @@
 		.form__phone {
 			display: inline-block;
 			width: 260px;
+			margin-bottom: 15px;
 		}
 		.button {
 			display: inline-block;
 			margin-left: 0;
+			max-width: 100%;
 		}
 
+	}
+}
+@media screen and (max-width: 470px) {
+	.form .container {
+	    background-size: 60%;
+	    padding-bottom: 230px;
 	}
 }
