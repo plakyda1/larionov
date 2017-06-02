@@ -10,6 +10,36 @@ var myModule = (function () {
 	// Прослушивает события
 	function _setUpListners () {
 		$('#introduction__submit, #introduction__submit_footer').on('click', validation);
+
+		$(document).on('mousemove touchend', function(event) {
+			var formBLock = $('#meetTo .container').offset(),
+				object=$('#meetTo .container'),
+				// надбавки чтобы взять центр оси по середине фотки Ильи
+				plusX = document.documentElement.clientWidth <= 480 ? $('#meetTo .container').width() : 200 ,
+				plusY =	document.documentElement.clientWidth <= 480 ? ($('#meetTo .container').height() - 80) : 200 ;
+				formBLock.top += plusY;
+				formBLock.left += plusX;
+			var x = formBLock.left - event.pageX,
+				y = (formBLock.top - event.pageY),
+				angle = Math.atan2(y,x)*180/Math.PI; // узнаем угол под которым курсом, относительно центра фото
+				if (Math.abs(x) < 80 && Math.abs(y) < 80) { // мышка над Ильей - cмотрим прямо
+					object.css('background-image', 'url(img/form2_bg_c.png)')
+				} else {
+					if (angle <= 45 || angle >= -45) { // влево
+						object.css('background-image', 'url(img/form2_bg_l.png)')
+					}
+					if (angle > 45 && angle < 135) { // вверх
+						object.css('background-image', 'url(img/form2_bg_t.png)')
+					}
+					if (angle >= 135 || angle <= -135) { // вправо
+						object.css('background-image', 'url(img/form2_bg_r.png)')
+					}
+					if (angle < -45 && angle > -135) { // вниз
+						object.css('background-image', 'url(img/form2_bg_b.png)')
+					}
+				}
+		});
+
 	};
 
 	function maskPhone (e) {

@@ -1,3 +1,19 @@
+  @keyframes shifting {   /* назовём анимацию: "go-left-right" */
+    from {
+      background-position-y: 87%;               /* от: left: 0px */
+    }
+    to {
+      background-position-y: 94%; /* до: left: 100%-50px */
+    }
+  }
+  @keyframes shiftingShadow {   /* назовём анимацию: "go-left-right" */
+    from {
+	    box-shadow: 0 0 25px 10px #e6e6e5;
+    }
+    to {
+	    box-shadow: 0 0 15px 10px #e6e6e5;
+    }
+  }
 .tricks {
 	background: {
 		color: #f8f7fa;
@@ -6,16 +22,37 @@
 		image: url('../img/tricks/logo.png');
 	}
 	.container {
+		position: relative;
+		animation: shifting 3s infinite alternate;
 		padding-top: 100px;
+		background-image: url(../img/tricks/iliya.png);
+	    background-repeat: no-repeat;
+	    background-position-y: 220px;
+	    background-position-x: center;
+	    &:after {
+	    	content: "";
+		    display: block;
+		    position: absolute;
+		    bottom: 0;
+		    left: 50%;
+		    margin-left: -40px;
+		    border-radius: 30%;
+		    width: 80px;
+		    background-color: #e6e6e5;
+		    height: 3px;
+		    box-shadow: 0 0 10px 10px #e6e6e5;
+			animation: shiftingShadow 3s infinite alternate;
+	    }
 	}
 	.section-title {
 		margin-bottom: 80px;
 	}
 }
 .tricks-wrap {
+	padding-bottom: 200px;
 	@include clearfix;
 	.left-side {
-		margin-top: 50px;
+		// margin-top: 50px;
 		float: left;
 		width: 35%;
 		text-align: right;
@@ -27,6 +64,7 @@
 		}
 	}
 	.img-wrap {
+		display: none;
 		float: left;
 		width: 30%;
 		text-align: center;
@@ -35,7 +73,7 @@
 		}
 	}
 	.right-side {
-		margin-top: 50px;
+		// margin-top: 50px;
 		text-align: left;
 		float: right;
 		width: 35%;
@@ -118,11 +156,13 @@
 			margin-bottom: 55px;
 		}
 		 .container {
+	 	    background-size: 46%;
 		 	padding-top: 80px;
 		 }
 
 	}
 	.tricks-wrap {
+		padding-bottom: 120px;
 		.right-side,
 		.left-side {
 			width: 40%;

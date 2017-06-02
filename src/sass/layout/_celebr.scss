@@ -110,15 +110,14 @@
 				transition: width 0.25s ease-in-out, height 0.25s ease-in-out, background-size 0.25s, -webkit-background-size 0.25s;
 			}
 			&:hover:after{
-				width: 85px;
-				height: 85px;
-				-webkit-background-size: 55%;
+				width: 88px;
+				height: 88px;
 				background-size: 55%;
 			}
 		}
 
 @media screen and (max-width: 400px) {
 	.img__wrap{
-		
+
 	}
 }
