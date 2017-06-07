@@ -1,6 +1,5 @@
 // Объявление модуля
 var myModule = (function () {
-
 	// Инициализирует наш модуль
 	function init () {
 		_setUpListners();
@@ -10,7 +9,6 @@ var myModule = (function () {
 	// Прослушивает события
 	function _setUpListners () {
 		$('#introduction__submit, #introduction__submit_footer').on('click', validation);
-
 		$(document).on('mousemove touchend', function(event) {
 			var formBLock = $('#meetTo .container').offset(),
 				object=$('#meetTo .container'),
@@ -41,7 +39,6 @@ var myModule = (function () {
 		});
 
 	};
-
 	function maskPhone (e) {
 		$('.form__phone').mask('+7 (999) 99-99-99');
 	};
@@ -111,3 +108,80 @@ $(function(){
 		return false;
 	});
 })
+
+var videoModule = (function () {
+	//VideoUrl
+	window.videoUrl = [
+		'R-2NVRZauEg',
+		'gA-_O2VUwc8',
+		'UfehLPb7WEE',
+		'NGDA62xFJKQ',
+		'rblKTubuRnE',
+		'8PfDBK5kNLg',
+		'DES3CZPiJUk',
+		'4BVip_01kzs',
+		'rjtqjYfymUE',
+		'jtgP-TcPpeA',
+		'4YTEpFTZtF8',
+		'URUtzAACbCY',
+	]
+	// Инициализирует наш модуль
+	function init () {
+		$('.tricks-wrap').on('mouseover','.tricks-item', videoView)		
+		// Yuotube
+		var tag = document.createElement('script');
+		tag.src = "https://www.youtube.com/player_api?enablejsapi=1";
+		var firstScriptTag = document.getElementsByTagName('script')[0];
+		firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+	}
+	var player;	
+	function videoView (event){
+		var index = randomInteger(0, videoUrl.length-1)
+		if(!player){
+		    player = new YT.Player('ytplayer', {
+		      height: '100%',
+		      width: '100%',
+		       playerVars : {
+	            'autoplay' : 1,
+	            'rel' : 0,
+	            'showinfo' : 0,
+	            'egm' : 0,
+	            'showsearch' : 0,
+	            'controls' : 0,
+	            'modestbranding' : 1,
+	        	},
+	        	events: {
+		            'onReady': onPlayerReady,
+		            'onStateChange' : onPlayerStateChange
+	          	},
+	      		videoId: videoUrl[index]
+		  })
+		}else{
+			loadNewVid(index)
+		}
+	}
+	function onPlayerReady(event) {
+        event.target.playVideo();
+    }		
+    function loadNewVid(randomInteger){
+    	player.loadVideoById(videoUrl[randomInteger]);
+	}
+	function randomInteger(min, max) {
+	    var rand = min - 0.5 + Math.random() * (max - min + 1)
+	    rand = Math.round(rand);
+	    return rand;
+	}
+	window.onPlayerStateChange = function(event, element) {
+	    //When the video has ended
+	    if (event.data == YT.PlayerState.ENDED) {
+	        //Get rid of the player
+	        player.destroy();
+	        player = false;
+	    }
+	};
+	return{
+		init: init
+	}
+})()
+
+videoModule.init();
