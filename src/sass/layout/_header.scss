@@ -124,9 +124,6 @@
 		max-width:80%;
 		width: 90%;
 	}
-	.top-line__tel{
-		@include font-size(20px);
-	}
 }
 @media screen and (max-width: 500px) {
 	.top-line__logo{
@@ -139,9 +136,6 @@
 	}
 	.header-block__title_big{
 		@include font-size(36px);
-	}
-	.top-line__tel{
-		@include font-size(18px);
 	}
 }
 @media screen and (max-height: 680px) {

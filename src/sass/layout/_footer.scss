@@ -2,6 +2,8 @@
 	.call-wrap {
 		background-color: #f8f7fa;
 		.container {
+			overflow: hidden;
+			position: relative;
 			padding-top: 105px;
 			padding-bottom: 105px;
 			@include clearfix;
@@ -34,6 +36,11 @@
 		.form__introduction {
 			text-align: left;
 		}
+	}
+
+	.container-form {
+		position: relative;
+		z-index: 2;
 	}
 }
 .corp-line {
@@ -86,11 +93,28 @@
 		// width: 86%;
 	}
 }
+
+.bg-container {
+	position: absolute;
+	z-index: 1;
+	width: 50%;
+	left: 0;
+	bottom: 0;
+	.bg {
+		display: none;
+		max-width: 100%;
+		&.active {
+			display: block;
+		}
+	}
+}
 @media screen and (max-width: 1025px) {
 	.footer .call-wrap .container {
-		background-size: 45%;
 		padding-top: 85px;
 		padding-bottom: 85px;
+	}
+	.bg-container {
+		width: 45%;
 	}
 	.call-wrap{
 		.tooltip-error {
@@ -102,6 +126,11 @@
 	}
 }
 @media screen and (max-width: 769px) {
+	.bg-container {
+		width: 60%;
+		left: initial;
+		right: -25%;
+	}
 	.corp-line .left-side {
 		display: block;
 		text-align: center;
@@ -135,7 +164,10 @@
 	}
 }
 @media screen and (max-width: 601px) {
-		.call-wrap {
+	.bg-container {
+		width: 80%;
+	}
+	.call-wrap {
 		.form__phone {
 			width: 260px;
 			box-sizing:border-box;
@@ -159,14 +191,23 @@
 	.footer {
 		.call-wrap {
 			.container {
-				background-position: 300% 100%;
-				background-size: 80%;
 				padding-bottom: 150px;
 			}
 		}
 	}
+	.bg-container {
+		width: 100%;
+		right: -50%;
+	}
 }
 @media screen and (max-width: 381px) {
+	.footer {
+		.call-wrap {
+			.container {
+				padding-bottom: 180px;
+			}
+		}
+	}
 	.footer .call-wrap  {
 		.form__introduction,
 		.form__text {
