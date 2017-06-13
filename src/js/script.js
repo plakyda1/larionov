@@ -13,7 +13,6 @@ var myModule = (function () {
 			var formBLock = $('#meetTo .bg.active').offset();
 				formBLock.top += $('#meetTo .bg.active').height()/2,
 				formBLock.left += $('#meetTo .bg.active').width()/2;
-				console.log(formBLock.top+'='+formBLock.left);
 			var x = formBLock.left - event.pageX,
 				y = formBLock.top - event.pageY,
 				angle = Math.atan2(y,x)*180/Math.PI; // узнаем угол под которым курсом, относительно центра фото
@@ -113,36 +112,74 @@ $(function(){
 
 var videoModule = (function () {
 	//VideoUrl
-	window.videoUrl = [
-		'R-2NVRZauEg',
-		'gA-_O2VUwc8',
-		'UfehLPb7WEE',
-		'NGDA62xFJKQ',
-		'rblKTubuRnE',
-		'8PfDBK5kNLg',
-		'DES3CZPiJUk',
-		'4BVip_01kzs',
-		'rjtqjYfymUE',
-		'jtgP-TcPpeA',
-		'4YTEpFTZtF8',
-		'URUtzAACbCY',
-	]
+	window.videoUrl = {
+		willPlay: 0,
+		urls: [
+			'R-2NVRZauEg',
+			'gA-_O2VUwc8',
+			'UfehLPb7WEE',
+			'NGDA62xFJKQ',
+			'rblKTubuRnE',
+			'8PfDBK5kNLg',
+			// 'DES3CZPiJUk',
+			'4BVip_01kzs',
+			'rjtqjYfymUE',
+			'jtgP-TcPpeA',
+			'4YTEpFTZtF8',
+			'URUtzAACbCY',
+		]
+	}
+
+	var player,
+		ytmobile;
 	// Инициализирует наш модуль
 	function init () {
-		$('.tricks-wrap').on('mouseover','.tricks-item', videoView)		
-		// Yuotube
 		var tag = document.createElement('script');
 		tag.src = "https://www.youtube.com/player_api?enablejsapi=1";
 		var firstScriptTag = document.getElementsByTagName('script')[0];
 		firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+		$(window).load(function(){
+			if (document.documentElement.clientWidth >= 768) {
+				videoView()
+				$('.tricks-wrap').on('click','.tricks-item', loadNewVid);
+				$('.tricks-wrap').on('mouseenter', playVid);
+			} else {
+				ytmobile = new YT.Player('ytmobile');
+				vidmobRescale();
+			}
+			$(window).on('resize', function(){
+				if (document.documentElement.clientWidth >= 768) {
+				  vidRescale();
+				} else {
+					vidmobRescale();
+				}
+			});
+		})
 	}
-	var player;	
+	function vidmobRescale(){
+		var w = $('.tricks-wrap .container').width();
+		ytmobile.setSize(w, w/16*9);
+	}
+
+	function vidRescale(){
+	  var w = $('.tricks-wrap .container').width()+200,
+	    h = $('.tricks-wrap .container').height()+200;
+
+	  if (w/h > 16/9){
+	    player.setSize(w, w/16*9);
+	    $('#ytplayer').css({'left': '0px'});
+	  } else {
+	    player.setSize(h/9*16, h);
+	  }
+  	    if ($('.video-wrap').width()<$('#ytplayer').attr('width')) {
+	    	$('#ytplayer').css({'left':-($('#ytplayer').attr('width')-$('.video-wrap').width())/2});
+	    }
+	}
 	function videoView (event){
-		var index = randomInteger(0, videoUrl.length-1)
-		if(!player){
+		$('.tricks').addClass('videoActivated');
+		// if(!player){
 		    player = new YT.Player('ytplayer', {
-		      height: '100%',
-		      width: '100%',
 		       playerVars : {
 	            'autoplay' : 1,
 	            'rel' : 0,
@@ -150,40 +187,74 @@ var videoModule = (function () {
 	            'egm' : 0,
 	            'showsearch' : 0,
 	            'controls' : 0,
-	            'modestbranding' : 1,
+				'autohide': 1,
+	            'modestbranding' : 1
 	        	},
 	        	events: {
 		            'onReady': onPlayerReady,
 		            'onStateChange' : onPlayerStateChange
 	          	},
-	      		videoId: videoUrl[index]
-		  })
-		}else{
-			loadNewVid(index)
-		}
+			     // loop: 1,
+	      		videoId: videoUrl.urls[videoUrl.willPlay]
+			})
+		// }else{
+		// 	loadNewVid(videoUrl.willPlay)
+		// 	// loadNewVid()
+		// }
+		// videoUrl.willPlay = videoUrl.willPlay < videoUrl.urls.length ? videoUrl.willPlay+1 : 0;
 	}
+    function playVid(){
+    	player.playVideo();
+    }
+    function loadNewVid(randomInteger){
+    	$('.tricks').addClass('videoActivated');
+    	// player.nextVideo();
+    	// console.log(player.getPlaylist());
+    	player.loadVideoById(videoUrl.urls[videoUrl.willPlay]);
+
+		videoUrl.willPlay = videoUrl.willPlay < videoUrl.urls.length ? videoUrl.willPlay+1 : 0;
+	}
+
 	function onPlayerReady(event) {
         event.target.playVideo();
-    }		
-    function loadNewVid(randomInteger){
-    	player.loadVideoById(videoUrl[randomInteger]);
-	}
-	function randomInteger(min, max) {
-	    var rand = min - 0.5 + Math.random() * (max - min + 1)
-	    rand = Math.round(rand);
-	    return rand;
-	}
+        player.mute();
+        vidRescale();
+    }
+	var done = false;
 	window.onPlayerStateChange = function(event, element) {
-	    //When the video has ended
-	    if (event.data == YT.PlayerState.ENDED) {
-	        //Get rid of the player
-	        player.destroy();
-	        player = false;
+		console.log(event.data);
+        	// alert(1);
+        if (event.data == 1 && !done && $('.tricks').hasClass('videoActivated')) {
+          setTimeout(stopVideo, 1000);
+          done = true;
+        }
+		function stopVideo() {
+			player.pauseVideo();
+		}
+	    if (event.data == 3) { // буферизация
+	    	$('.video-wrap').removeClass('active');
+	        $('.tricks').addClass('videoActivated');
 	    }
+	    if (event.data == 2) { // видео началось
+	    	$('.video-wrap').addClass('active');
+	    }
+
+	    if (event.data == 1) { // видео началось
+	    	$('.video-wrap').addClass('active');
+	        // $('#ytplayer').fadeIn();
+	    }
+	    if (event.data == 0) { // видео окончилось
+	        // $('#ytplayer').fadeOut();
+	    	$('.video-wrap').removeClass('active');
+	        // player.destroy();
+	        // player = false;
+	        $('.tricks').removeClass('videoActivated');
+	    }
+
 	};
 	return{
 		init: init
 	}
 })()
 
-videoModule.init();
+	videoModule.init();
