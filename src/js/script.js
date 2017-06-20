@@ -121,7 +121,6 @@ var videoModule = (function () {
 			'NGDA62xFJKQ',
 			'rblKTubuRnE',
 			'8PfDBK5kNLg',
-			// 'DES3CZPiJUk',
 			'4BVip_01kzs',
 			'rjtqjYfymUE',
 			'jtgP-TcPpeA',
@@ -131,7 +130,8 @@ var videoModule = (function () {
 	}
 
 	var player,
-		ytmobile;
+		ytmobile,
+		done = false;
 	// Инициализирует наш модуль
 	function init () {
 		var tag = document.createElement('script');
@@ -175,33 +175,31 @@ var videoModule = (function () {
   	    if ($('.video-wrap').width()<$('#ytplayer').attr('width')) {
 	    	$('#ytplayer').css({'left':-($('#ytplayer').attr('width')-$('.video-wrap').width())/2});
 	    }
+	    $('.stopkadr').css({
+	    	'width': $('#ytplayer').attr('width'),
+	    	'height': $('#ytplayer').attr('height'),
+	    	'left': $('#ytplayer').css('left')
+	    })
 	}
 	function videoView (event){
 		$('.tricks').addClass('videoActivated');
-		// if(!player){
-		    player = new YT.Player('ytplayer', {
-		       playerVars : {
-	            'autoplay' : 1,
-	            'rel' : 0,
-	            'showinfo' : 0,
-	            'egm' : 0,
-	            'showsearch' : 0,
-	            'controls' : 0,
-				'autohide': 1,
-	            'modestbranding' : 1
-	        	},
-	        	events: {
-		            'onReady': onPlayerReady,
-		            'onStateChange' : onPlayerStateChange
-	          	},
-			     // loop: 1,
-	      		videoId: videoUrl.urls[videoUrl.willPlay]
-			})
-		// }else{
-		// 	loadNewVid(videoUrl.willPlay)
-		// 	// loadNewVid()
-		// }
-		// videoUrl.willPlay = videoUrl.willPlay < videoUrl.urls.length ? videoUrl.willPlay+1 : 0;
+	    player = new YT.Player('ytplayer', {
+	       playerVars : {
+            'autoplay' : 1,
+            'rel' : 0,
+            'showinfo' : 0,
+            'egm' : 0,
+            'showsearch' : 0,
+            'controls' : 0,
+			'autohide': 1,
+            'modestbranding' : 1
+        	},
+        	events: {
+	            'onReady': onPlayerReady,
+	            'onStateChange' : onPlayerStateChange
+          	},
+      		videoId: videoUrl.urls[videoUrl.willPlay]
+		})
 	}
     function playVid(){
     	player.playVideo();
@@ -209,9 +207,7 @@ var videoModule = (function () {
     function loadNewVid(randomInteger){
     	$('.tricks').addClass('videoActivated');
     	// player.nextVideo();
-    	// console.log(player.getPlaylist());
     	player.loadVideoById(videoUrl.urls[videoUrl.willPlay]);
-
 		videoUrl.willPlay = videoUrl.willPlay < videoUrl.urls.length ? videoUrl.willPlay+1 : 0;
 	}
 
@@ -220,10 +216,8 @@ var videoModule = (function () {
         player.mute();
         vidRescale();
     }
-	var done = false;
-	window.onPlayerStateChange = function(event, element) {
+	function onPlayerStateChange(event, element) {
 		console.log(event.data);
-        	// alert(1);
         if (event.data == 1 && !done && $('.tricks').hasClass('videoActivated')) {
           setTimeout(stopVideo, 1000);
           done = true;
@@ -231,12 +225,17 @@ var videoModule = (function () {
 		function stopVideo() {
 			player.pauseVideo();
 		}
-	    if (event.data == 3) { // буферизация
+	    if (event.data == -1) { // видео не началось
 	    	$('.video-wrap').removeClass('active');
-	        $('.tricks').addClass('videoActivated');
+	    }
+
+	    if (event.data == 3) { // буферизация
+	    	$('.video-wrap').removeClass('active').addClass('load_process');
+	        // $('.tricks').addClass('videoActivated');
 	    }
 	    if (event.data == 2) { // видео началось
-	    	$('.video-wrap').addClass('active');
+	    	// $('.video-wrap').addClass('active');
+	    	$('.video-wrap').removeClass('load_process');
 	    }
 
 	    if (event.data == 1) { // видео началось
@@ -245,10 +244,9 @@ var videoModule = (function () {
 	    }
 	    if (event.data == 0) { // видео окончилось
 	        // $('#ytplayer').fadeOut();
-	    	$('.video-wrap').removeClass('active');
-	        // player.destroy();
+	    	$('.video-wrap').removeClass('active').removeClass('load_process');
 	        // player = false;
-	        $('.tricks').removeClass('videoActivated');
+	        // $('.tricks').removeClass('videoActivated');
 	    }
 
 	};
