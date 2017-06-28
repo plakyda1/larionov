@@ -1,8 +1,8 @@
 // @extend class
 // блок на черном фоне с треуголиниками
 .accent{
-	font-family: 'Intro Head R Base';	
-	background-color: #000;
+	font-family: 'Intro Head R Base';
+	background-color: #26231f;
 	color: #ffffff;
 	text-transform: uppercase;
 	line-height: 1em;
@@ -18,16 +18,28 @@
 		image: url('../img/tricks/logo.png');
 	}
 	.container {
+		padding-bottom: 70px;
+		padding-top: 70px;
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: space-between;
 	}
 }
+.tricks-magic {
+	position: absolute;
+	top: 0;
+	left: 0;
+}
 .tricks-opportunity {
 	padding-left: 200px;
 	position: relative;
-	margin-top: 70px;					
 	margin-bottom: 	40px;
+	text-align: justify;
+	&:after {
+		display: table;
+		clear: both;
+		content: '';
+	}
 	&:before {
 		position: absolute;
 		top: 0;
@@ -41,14 +53,10 @@
 		width: 150px;
 		height: 128px;
 	}
-	p{
-		position: relative;
-		text-align: left;
-		.accent{
-			display: inline-block;	
-			float: right;
-			margin-top: 14px;
-		}
+	.accent{
+		display: inline-block;
+		float: right;
+		margin-top: 14px;
 	}
 	.text {
 		font-size: 68px;
@@ -62,40 +70,18 @@
 	}
 }
 
-.tricks-accent {
-	position: relative;
-	width: 200px;
-	.text {
-		@extend .accent;
-		position: absolute;
-		height:100%;
-		left:0;
-		transform: rotate(-90deg);
-		font-size: 24px;
-		span {
-			&:before {
-				content: '';
-				background-image: url(../img/tricks/lightning_l.svg);
-				width: 25px;
-				height: 45px;
-				display: inline-block;
-			}
-			&:after {
-				content: '';
-				background-image: url(../img/tricks/lightning_r.svg);
-				width: 25px;
-				height: 45px;
-				display: inline-block;
-			}
-		}
-	}
-}
 .tricks-inner__wrap{
 	width: 100%;
+	padding-left: 78px;
+	position: relative;
+	@include clearfix;
+
 	.tricks-inner__first{
-		display: flex;	
+		display: flex;
+		flex-wrap: wrap;
 		justify-content: space-between;
-		.tricks-dynamic__wrap{
+		margin-bottom: 20px;
+		.tricks-dynamic__inner-wrap{
 			display: flex;
 			flex-direction: column;
 			width: 200px;
@@ -147,7 +133,7 @@
 					background-position: top center;
 					width: 80px;
 					height: 100%;
-					background-image: url(../img/tricks/p.svg)	
+					background-image: url(../img/tricks/p.svg)
 				}
 				&:after{
 					content:"";
@@ -170,7 +156,8 @@
 		}
 		.tricks-video__wrap{
 			display: flex;
-			padding-left: 20px;
+			flex:1;
+			margin-left: 20px;
 			padding-bottom: 32px;
 			position: relative;
 			&:after{
@@ -183,15 +170,11 @@
 				background-color: #000;
 			}
 			.tricks-video__block{
-				// flex:1;
-				#stopkadr{
-					width: 100%;
-					height:100%;
-					padding-right:20px;
-					img{
-						width: 100%;
-						height:100%;
-					}
+				position: relative;
+				margin-right: 20px;
+				flex:1;
+				#ytplayer {
+					// top: -50px;
 				}
 			}
 			.tricks-incredible{
@@ -250,3 +233,478 @@
 
 		}
 	}
+.tricks-inner__left {
+	float: left;
+}
+.tricks-inner__right {
+	margin-left: 77px;
+}
+.tricks-item {
+	cursor: pointer;
+}
+.video-wrap {
+	overflow: hidden;
+	#ytplayer {
+		// position: relative;
+		position: absolute;
+		display: none;
+	}
+	.stopkadr {
+		position: absolute;
+		width: 100%;
+		height:100%;
+		img{
+			display: inline-block;
+			max-width: 100%;
+		}
+	}
+	&.active {
+		#ytplayer {
+			display: block;
+		}
+		.stopkadr {
+			display: none;
+		}
+
+	}
+}
+.tricks__mobile {
+	display: none;
+}
+
+@media screen and (max-width: 1024px) {
+	.tricks-opportunity {
+		padding-left: 180px;
+		&:before {
+			width: 140px;
+		}
+		.text {
+			font-size: 50px;
+		}
+	}
+	.tricks-opportunity .accent {
+		font-size: 34px;
+		margin-top: 10px;
+	}
+	.tricks-tactfulness p.text {
+		font-size: 28px;
+	}
+
+}
+
+@media screen and (max-width: 1023px) and (min-width: 769px) {
+	.tricks-opportunity {
+		padding-left: 170px;
+	}
+	.tricks-inner__wrap .tricks-video__wrap {
+		margin-left: 0;
+	}
+	.tricks-inner__wrap .tricks-inner__first .tricks-dynamic__inner-wrap {
+		width: 100%;
+		flex-direction: row;
+		align-items: center;
+		margin-bottom: 20px;
+		padding-bottom: 20px;
+		position: relative;
+		> * {
+			width: 50%;
+		}
+		&:after {
+		    content: "";
+		    display: block;
+		    position: absolute;
+		    bottom: 0;
+		    left: 0;
+		    height: 6px;
+		    width: 100%;
+		    border-radius: 3px;
+		    background-color: #000;
+		}
+	}
+	.tricks-inner__wrap .tricks-inner__first .tricks-dynamic__inner-wrap .tricks-dynamic {
+		margin-bottom: 0;
+		padding-bottom: 0;
+		&:after {
+			display: none;
+		}
+	}
+	.tricks-inner__wrap .tricks-inner__first .tricks-dynamic__inner-wrap .tricks-immersion {
+		padding-bottom: 0;
+		min-height: 80px;
+		&:after {
+			display: none;
+		}
+		.text {
+			font-size: 21px;
+		}
+	}
+}
+@media screen and (max-width: 950px) {
+	.tricks-opportunity {
+		padding-left: 0;
+		&:before {
+			display: none;
+		}
+		.accent  {
+			font-size: 46px;
+			text-align: center;
+			margin-top: 0;
+			padding-top: 15px;
+			padding-bottom: 15px;
+			float: none;
+		}
+		.accent ,
+		.text {
+			display: block;
+		}
+		.text {
+			min-height: 120px;
+			margin-bottom: 30px;
+			position: relative;
+			padding-left: 170px;
+			&:before {
+				position: absolute;
+				top: 0;
+				bottom: 0;
+				margin: auto;
+				left: 0;
+				content: '';
+				background-image: url(../img/tricks/b.svg);
+				background-repeat: no-repeat;
+				background-size: contain;
+				width: 140px;
+				height: 120px;
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 768px) {
+	#ytmobile {
+		margin-bottom: 30px;
+		display: block;
+	}
+	.tricks__mobile {
+		max-width: 100%;
+		display: block;
+	}
+	.tricks-inner__wrap .tricks-video__wrap .tricks-video__block {
+		display: none;
+	}
+	.mobile-tricks__list {
+		margin-bottom: 50px;
+		padding-left: 180px;
+		position: relative;
+		display: flex;
+		align-items: flex-start;
+		flex-wrap: wrap;
+		min-height: 110px;
+		&:before {
+			position: absolute;
+			top: 0;
+			left: 0;
+			display: block;
+			content: '';
+			background-repeat: no-repeat;
+			background-image: url(../img/tricks/hand_m.svg);
+			background-size: contain;
+			width: 175px;
+			height: 108px;
+		}
+	}
+	.mobile-tricks__li {
+		padding-left: 10%;
+		width: 50%;
+		margin-bottom: 10px;
+	}
+	.mobile-tricks__link {
+		text-align: left;
+		display: block;
+		cursor: pointer;
+		color: #5200e7;
+		font-size: 18px;
+		text-transform: uppercase;
+		text-decoration: underline;
+		text-decoration-style: dashed;
+		span {
+			font-weight: 700;
+		}
+	}
+	.tricks-opportunity{
+		.text {
+			font-size: 52px;
+		}
+		.accent:before {
+			width: 130px;
+			height: 112px;
+		}
+	}
+	.tricks-inner__first {
+		position: relative;
+		padding-left: 74px;
+		min-height: 474px;
+	}
+	.tricks-inner__wrap {
+		padding-left: 0;
+		position: initial;
+	}
+	.tricks-inner__wrap .tricks-inner__first .tricks-dynamic__inner-wrap {
+		width: auto;
+		height: 100%;
+		justify-content: space-between;
+	}
+	.tricks-dynamic__wrap {
+		width: 41%;
+	}
+	.tricks-video__wrap {
+		width: 59%;
+	}
+	.tricks-inner__wrap .tricks-inner__first .tricks-dynamic__inner-wrap .tricks-dynamic:before {
+		height: 62px;
+	}
+	.tricks-inner__wrap .tricks-inner__first .tricks-dynamic__inner-wrap .tricks-immersion:before {
+		width: 100px;
+		height: 130px;
+	}
+	.tricks-dynamic {
+		font-size: 26px;
+	}
+	.tricks-inner__wrap .tricks-inner__first .tricks-dynamic__inner-wrap .tricks-immersion {
+		padding-left: 110px;
+		font-size: 20px;
+		min-height: 205px;
+	}
+	.tricks-inner__wrap .tricks-video__wrap .tricks-incredible {
+		width: 100%;
+		font-size: 39px;
+		line-height: 57px;
+		letter-spacing: 1px;
+		p.text {
+			padding-top: 200px;
+			&:before {
+				width: 201px;
+				height: 182px;
+			}
+		}
+	}
+	.tricks-inner__wrap .tricks-video__wrap:after {
+		width: 138%;
+		left: initial;
+		right: 0;
+	}
+	.tricks-tactfulness {
+
+		&:before {
+			width: 194px;
+			height: 84px;
+		}
+		p.text {
+			font-size: 41px;
+		}
+		p.sub-text {
+			font-size: 23px;
+		}
+	}
+	.tricks-opportunity {
+		text-align: left;
+	}
+}
+@media screen and (max-width: 650px) {
+	.mobile-tricks__li {
+		text-align: left;
+		width: 100%;
+		margin-bottom: 20px;
+		&:nth-last-of-type(1) {
+			margin-bottom: 0;
+		}
+	}
+	.mobile-tricks__link {
+		display: inline-block;
+	}
+	.tricks-opportunity .accent {
+		font-size: 36px;
+	}
+	.tricks-video__wrap,
+	.tricks-dynamic__wrap {
+		width: 50%;
+	}
+	.tricks-inner__wrap .tricks-video__wrap:after {
+		width: 100%;
+	}
+	.tricks-inner__wrap .tricks-video__wrap .tricks-incredible p.text {
+		font-size: 28px;
+		word-break: break-word;
+	}
+	.tricks-opportunity .text {
+		font-size: 46px;
+	}
+}
+@media screen and (max-width: 540px) {
+	.tricks-tactfulness {
+		padding-left: 130px;
+		&:before {
+			left: -40px;
+			transform: rotate(-90deg);
+		}
+	}
+	.tricks-tactfulness p.text {
+		font-size: 36px;
+	}
+	.tricks-inner__wrap .tricks-video__wrap {
+		width: 100%;
+		margin-left: 0;
+	}
+	.tricks-dynamic__wrap, .tricks-video__wrap {
+		width: 100%;
+	}
+	.tricks-magic {
+	    top: 50%;
+	    transform: translateY(-50%);
+	}
+	.tricks-inner__wrap .tricks-inner__first .tricks-dynamic__inner-wrap .tricks-immersion {
+		min-height: 160px;
+		width: 200px;
+		margin-bottom: 20px;
+	}
+	.tricks-inner__wrap .tricks-video__wrap {
+		padding-top: 20px;
+	}
+	.tricks-inner__wrap .tricks-video__wrap:after {
+		top: 0;
+		bottom: initial;
+	}
+	.tricks-opportunity .text {
+		font-size: 38px;
+	}
+	.tricks-opportunity .accent {
+		font-size: 26px;
+	}
+}
+
+@media screen and (max-width: 480px) {
+	.tricks-magic {
+		top: 0;
+		transform: none;
+	}
+	.tricks-inner__first {
+		padding-left: 0;
+	}
+	.tricks-dynamic__wrap {
+		position: relative;
+		padding-left: 90px;
+		min-height: 472px;
+		margin-bottom: 30px;
+	}
+	.tricks-inner__wrap .tricks-inner__first .tricks-dynamic__inner-wrap .tricks-dynamic:before {
+		height: 82px;
+	}
+	.tricks-inner__wrap .tricks-inner__first .tricks-dynamic__inner-wrap .tricks-dynamic {
+		padding-top: 90px;
+		font-size: 33px;
+		line-height: normal;
+	}
+	.tricks-inner__wrap .tricks-inner__first .tricks-dynamic__inner-wrap .tricks-immersion {
+		padding-bottom: 0;
+		min-height: 155px;
+		padding-left: 140px;
+		width: 100%;
+		&:before {
+			width: 130px;
+			height: 155px;
+		}
+
+		&:after {
+			margin-right: 10px;
+			right: 100%;
+			left: initial;
+		}
+	}
+	.tricks-inner__wrap .tricks-inner__first .tricks-dynamic__inner-wrap .tricks-immersion .text {
+		font-size: 34px;
+		line-height: normal;
+	}
+	.tricks-inner__wrap .tricks-video__wrap {
+		padding-top: 0;
+		&:after {
+			top: initial;
+			bottom: 0;
+		}
+	}
+	.tricks-inner__wrap .tricks-video__wrap .tricks-incredible p.text:before {
+		width: 178px;
+		height: 162px;
+	}
+	.tricks-inner__wrap .tricks-video__wrap .tricks-incredible p.text {
+		padding-left: 190px;
+		padding-top: 0;
+	}
+	.tricks-tactfulness {
+		padding-top: 30px;
+	}
+}
+@media screen and (max-width: 460px) {
+	.mobile-tricks__list:before {
+		opacity: 0.5;
+	}
+	.mobile-tricks__list {
+		padding-left: 0;
+	}
+	.mobile-tricks__li {
+		text-align: right;
+	}
+	.tricks-opportunity .text {
+		padding-top: 130px;
+		padding-left: 0;
+		&:before {
+			margin: 0;
+		}
+	}
+	.tricks-inner__wrap .tricks-inner__first .tricks-dynamic__inner-wrap .tricks-immersion {
+		min-height: initial;
+		padding-top: 110px;
+		padding-left: 0;
+	}
+	.tricks-dynamic__wrap {
+		padding-left: 70px;
+	}
+	.tricks-inner__wrap .tricks-inner__first .tricks-dynamic__inner-wrap .tricks-immersion:before {
+		height: 100px;
+		width: 100px;
+	}
+	.tricks-inner__wrap .tricks-inner__first .tricks-dynamic__inner-wrap .tricks-immersion:after {
+		left: 110px;
+		top: 75px;
+	}
+	.mobile-tricks__list {
+		margin-bottom: 20px;
+	}
+	.tricks-inner__wrap .tricks-video__wrap .tricks-incredible p.text {
+		padding-left: 130px;
+		&:before {
+			width: 100px;
+			height: 100px;
+		}
+	}
+}
+@media screen and (max-width: 379px) {
+	.tricks-magic {
+	    top: 50%;
+	    transform: translateY(-50%);
+	}
+	.tricks-inner__wrap .tricks-video__wrap .tricks-incredible p.text {
+		padding-top: 110px;
+		padding-left: 0;
+	}
+	.tricks-tactfulness {
+		padding-top: 100px;
+		padding-left: 0;
+	}
+
+	.tricks-tactfulness:before {
+		top: 0;
+		margin-top: 0;
+		left: 0;
+		padding-left: 0;
+		transform: none;
+	}
+}

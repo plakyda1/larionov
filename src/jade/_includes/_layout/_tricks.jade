@@ -1,27 +1,36 @@
 section.tricks
-	.container
-		.tricks-opportunity
-			p
-				span.text Возможность прикоснуться к чуду.
-				span.accent Гости становятся звёздами шоу
+	.container.tricks-wrap
+		.tricks__mobile
+			iframe#ytmobile(width='100%', height='250', src='https://www.youtube.com/embed/R-2NVRZauEg?enablejsapi=1', frameborder='0', allowfullscreen='')
+			ul.mobile-tricks__list
+				-var videoID = ['R-2NVRZauEg','gA-_O2VUwc8','UfehLPb7WEE','8PfDBK5kNLg','URUtzAACbCY','4YTEpFTZtF8']
+				each item, i in ['кубик рубика','огонь','воздушный шарик','игральная карта','журнал','воздушный шарик']
+					li.mobile-tricks__li
+						a.mobile-tricks__link(href='#' data-videoID=videoID[i])
+							span=item
+		.tricks-opportunity.tricks-item
+			span.text Возможность прикоснуться к чуду.
+			span.accent Гости становятся звёздами шоу
 		.tricks-inner__wrap
+			//- .tricks-inner__left
 			.tricks-inner__first
-				.tricks-accent
-					.text
-						//- span Фокусы Ильи граничат с чудом
 				.tricks-dynamic__wrap
-					.tricks-dynamic
-						p.text Динамичное шоу,  которое ваши гости смотрят на одном дыхании
-					.tricks-immersion
-						p.text Полное погружение в океан восторга
+					.tricks-magic.tricks-item
+						img(src='img/tricks/magic_text.png')
+					.tricks-dynamic__inner-wrap
+						.tricks-dynamic.tricks-item
+							p.text Динамичное шоу,  которое ваши гости смотрят на одном дыхании
+						.tricks-immersion.tricks-item
+							p.text Полное погружение в океан восторга
 				.tricks-video__wrap
-					.tricks-video__block
-						#stopkadr
+					.tricks-video__block.video-wrap
+						#ytplayer
+						.stopkadr
 							img(src='img/stopkadr_l.jpg')
-					.tricks-incredible
+					.tricks-incredible.tricks-item
 						p.text Невероятная атмосфера и восхитительная подача
-			.tricks-tactfulness
-				p.text Безукоризненная тактичность, юмор и стиль общения Ильи 
+			.tricks-tactfulness.tricks-item
+				p.text Безукоризненная тактичность, юмор и стиль общения Ильи
 				p.sub-text растопят сердца самых искушенных гостей
 
 

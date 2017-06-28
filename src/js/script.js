@@ -115,22 +115,22 @@ var videoModule = (function () {
 	window.videoUrl = {
 		willPlay: 0,
 		urls: [
-			'R-2NVRZauEg',
-			'gA-_O2VUwc8',
-			'UfehLPb7WEE',
-			'NGDA62xFJKQ',
-			'rblKTubuRnE',
-			'8PfDBK5kNLg',
-			'4BVip_01kzs',
-			'rjtqjYfymUE',
-			'jtgP-TcPpeA',
-			'4YTEpFTZtF8',
-			'URUtzAACbCY',
+			'R-2NVRZauEg', // 'кубик рубика'
+			'gA-_O2VUwc8', // 'огонь'
+			'UfehLPb7WEE', // 'воздушный шарик'
+			// 'NGDA62xFJKQ',
+			// 'rblKTubuRnE',
+			'8PfDBK5kNLg', // карта
+			// '4BVip_01kzs',
+			// 'rjtqjYfymUE',
+			// 'jtgP-TcPpeA',
+			'4YTEpFTZtF8', // 'воздушный шарик'
+			'URUtzAACbCY', // журнал
 		]
 	}
 
 	var player,
-		ytmobile,
+		ytmobile ,
 		done = false;
 	// Инициализирует наш модуль
 	function init () {
@@ -140,16 +140,24 @@ var videoModule = (function () {
 		firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 		$(window).load(function(){
-			if (document.documentElement.clientWidth >= 768) {
+			if (document.documentElement.clientWidth > 768) {
 				videoView()
 				$('.tricks-wrap').on('click','.tricks-item', loadNewVid);
 				$('.tricks-wrap').on('mouseenter', playVid);
 			} else {
 				ytmobile = new YT.Player('ytmobile');
+				// console.log(ytmobile.getPlaylist());
 				vidmobRescale();
+				$('.mobile-tricks__link').click(function(event){
+					event.preventDefault();
+					console.log($(this).attr('data-videoID'));
+						ytmobile.cueVideoById($(this).attr('data-videoID'));
+						ytmobile.playVideo();
+					return false;
+				})
 			}
 			$(window).on('resize', function(){
-				if (document.documentElement.clientWidth >= 768) {
+				if (document.documentElement.clientWidth > 768) {
 				  vidRescale();
 				} else {
 					vidmobRescale();
@@ -158,18 +166,21 @@ var videoModule = (function () {
 		})
 	}
 	function vidmobRescale(){
-		var w = $('.tricks-wrap .container').width();
+		var w = $('.tricks__mobile').width();
 		ytmobile.setSize(w, w/16*9);
 	}
 
 	function vidRescale(){
-	  var w = $('.tricks-wrap .container').width()+200,
-	    h = $('.tricks-wrap .container').height()+200;
+
+	  var w = $('.video-wrap').width(),
+	    h = $('.video-wrap').height();
 
 	  if (w/h > 16/9){
+	  	console.log(1);
 	    player.setSize(w, w/16*9);
 	    $('#ytplayer').css({'left': '0px'});
 	  } else {
+	  	console.log(2);
 	    player.setSize(h/9*16, h);
 	  }
   	    if ($('.video-wrap').width()<$('#ytplayer').attr('width')) {
@@ -206,7 +217,6 @@ var videoModule = (function () {
     }
     function loadNewVid(randomInteger){
     	$('.tricks').addClass('videoActivated');
-    	// player.nextVideo();
     	player.loadVideoById(videoUrl.urls[videoUrl.willPlay]);
 		videoUrl.willPlay = videoUrl.willPlay < videoUrl.urls.length ? videoUrl.willPlay+1 : 0;
 	}
@@ -231,22 +241,16 @@ var videoModule = (function () {
 
 	    if (event.data == 3) { // буферизация
 	    	$('.video-wrap').removeClass('active').addClass('load_process');
-	        // $('.tricks').addClass('videoActivated');
 	    }
 	    if (event.data == 2) { // видео началось
-	    	// $('.video-wrap').addClass('active');
 	    	$('.video-wrap').removeClass('load_process');
 	    }
 
 	    if (event.data == 1) { // видео началось
 	    	$('.video-wrap').addClass('active');
-	        // $('#ytplayer').fadeIn();
 	    }
 	    if (event.data == 0) { // видео окончилось
-	        // $('#ytplayer').fadeOut();
 	    	$('.video-wrap').removeClass('active').removeClass('load_process');
-	        // player = false;
-	        // $('.tricks').removeClass('videoActivated');
 	    }
 
 	};
